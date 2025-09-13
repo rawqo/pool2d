@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mccfgy1jufpr"]
+
+[ext_resource type="Script" uid="uid://fkrd7e683u00" path="res://scripts/tronera.gd" id="1_hnwwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie6e4"]
+
+[node name="Tronera" type="Area2D"]
+script = ExtResource("1_hnwwi")
+
+[node name="Area_Colision" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_ie6e4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

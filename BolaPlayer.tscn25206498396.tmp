@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj2gglc0npt5f"]
+
+[ext_resource type="Script" uid="uid://bcgmlw80dw6px" path="res://bola_player.gd" id="1_romp1"]
+[ext_resource type="Texture2D" uid="uid://bg0cg7t3hy8p" path="res://sprites/bolas/bola0_spritesheet.png" id="2_romp1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xge7t"]
+atlas = ExtResource("2_romp1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jaq0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_downleft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_downright",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_upleft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xge7t")
+}],
+"loop": true,
+"name": &"spin_upright",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jaq0j"]
+
+[node name="BolaPlayer" type="CharacterBody2D"]
+script = ExtResource("1_romp1")
+
+[node name="SpriteAnimado" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jaq0j")
+animation = &"spin_upright"
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_jaq0j")

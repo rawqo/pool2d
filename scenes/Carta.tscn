@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ckfgdkojg2kjx"]
+
+[node name="Carta" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "CARTA
+CARTA
+CARTA
+CARTA"

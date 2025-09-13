@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj2gglc0npt5f"]
+
+[ext_resource type="Script" uid="uid://bcgmlw80dw6px" path="res://scripts/bola_player.gd" id="1_romp1"]
+[ext_resource type="PackedScene" uid="uid://cj5xvpymi2ki1" path="res://assets/Bola.tscn" id="3_83ltj"]
+
+[node name="Bola" instance=ExtResource("3_83ltj")]
+script = ExtResource("1_romp1")

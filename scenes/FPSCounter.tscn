@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce0gr125m3uei"]
+
+[ext_resource type="Script" uid="uid://cyue1we2rhcyl" path="res://scripts/fps_counter.gd" id="1_ntv6m"]
+
+[node name="FpsCounter" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntv6m")
