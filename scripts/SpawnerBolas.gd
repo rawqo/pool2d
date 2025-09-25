@@ -8,6 +8,8 @@ func _ready() -> void:
 		if (Bolas != "BLANCA"):
 			print("Spawneando: " + str(Bolas))
 			SpawnBola(Bola.Bolas[Bolas], false)
+		
+			
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +26,10 @@ func SpawnBola(NumeroBola: int, esBolaRayada : bool):
 	Bolita.position.x = Bolita.position.x + (NumeroBola * ESPACIO_ENTRE_BOLAS)
 	
 	#Actualizar label con el numero de la bola
-	Bolita.get_child(-1).text = str(NumeroBola)
+	if(NumeroBola % 10 == 6 || NumeroBola % 10 == 9):
+		Bolita.get_child(-1).text = "[u]" + str(NumeroBola) + "[/u]"
+	else:
+		Bolita.get_child(-1).text = str(NumeroBola)
 	
 	#Asignar sprite correspondiente a cada bola
 	if (NumeroBola < 8):

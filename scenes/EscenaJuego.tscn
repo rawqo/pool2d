@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://jufagotumfjt"]
+[gd_scene load_steps=9 format=3 uid="uid://jufagotumfjt"]
 
 [ext_resource type="PackedScene" uid="uid://btbjl4rt8fdct" path="res://assets/Mesa.tscn" id="1_05t4e"]
+[ext_resource type="Script" uid="uid://b2mtbkytfdaic" path="res://scenes/escena_juego.gd" id="1_incip"]
 [ext_resource type="PackedScene" uid="uid://bj2gglc0npt5f" path="res://assets/BolaPlayer.tscn" id="3_wssat"]
 [ext_resource type="Script" uid="uid://cnkx7qqtwnr1x" path="res://scripts/SpawnerBolas.gd" id="4_incip"]
 [ext_resource type="Script" uid="uid://bcgmlw80dw6px" path="res://scripts/bola_player.gd" id="4_wssat"]
 [ext_resource type="Theme" uid="uid://dor21e5v7d3d7" path="res://art/Default_Theme.tres" id="5_wssat"]
 [ext_resource type="PackedScene" uid="uid://x8a5onptpyrd" path="res://scenes/GUI_InGame.tscn" id="6_wssat"]
+[ext_resource type="AudioStream" uid="uid://bk61lf68tw787" path="res://audio/music/jazz_club.mp3" id="8_4do8k"]
 
 [node name="EscenaJuego" type="Node2D"]
+script = ExtResource("1_incip")
+
+[node name="Main_Camera" type="Camera2D" parent="."]
+position = Vector2(1127, 644)
+zoom = Vector2(0.8, 0.8)
 
 [node name="Mesa" parent="." instance=ExtResource("1_05t4e")]
 
@@ -24,3 +31,8 @@ script = ExtResource("4_wssat")
 [node name="GUI_InGame" parent="." instance=ExtResource("6_wssat")]
 visible = false
 theme = ExtResource("5_wssat")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4do8k")
+volume_db = -10.0
+parameters/looping = true

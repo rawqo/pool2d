@@ -37,7 +37,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	#TODO: Make volume of sound depend on force of impact
+	#TODO: Make volume of sound depends on force of impact
 	if body is Bola:
 		var colliding_force = get_linear_velocity()
 		colliding_force = snapped(sqrt((colliding_force.x ** 2) + (colliding_force.y ** 2)), 0.01)

@@ -13,6 +13,3 @@ metadata/_edit_lock_ = true
 
 [node name="Collider" parent="." index="3"]
 metadata/_edit_lock_ = true
-
-[node name="Label" parent="." index="4"]
-metadata/_edit_lock_ = true
