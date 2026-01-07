@@ -10,7 +10,7 @@ func _ready() -> void:
 	#Textura = load("res://sprites/bolas/bola_0.png")
 	#$Sprite2D.texture = Textura
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	mouse_pos = get_viewport().get_mouse_position()
 	pass
 	

@@ -1,15 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj2gglc0npt5f"]
+[gd_scene load_steps=6 format=3 uid="uid://bj2gglc0npt5f"]
 
+[ext_resource type="Texture2D" uid="uid://dddo0hypqyeki" path="res://sprites/bolas/base_blanca.png" id="2_0iqmd"]
+[ext_resource type="Shader" uid="uid://bnigmyp0hypsi" path="res://Bola.gdshader" id="2_8xvv8"]
+[ext_resource type="Texture2D" uid="uid://dg6xg3wfdkjk1" path="res://sprites/bolas/mask.png" id="3_4sw7g"]
 [ext_resource type="PackedScene" uid="uid://cj5xvpymi2ki1" path="res://assets/Bola.tscn" id="3_83ltj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdbuq"]
+resource_local_to_scene = true
+shader = ExtResource("2_8xvv8")
+shader_parameter/mask_texture = ExtResource("3_4sw7g")
+shader_parameter/numeroDeBola = 0
+shader_parameter/linear_velocity = 0.0
+shader_parameter/quaternion = Vector4(0, 0, 0, 1)
 
 [node name="Bola" instance=ExtResource("3_83ltj")]
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_wdbuq")
+texture = ExtResource("2_0iqmd")
 metadata/_edit_lock_ = true
 
-[node name="SpriteAnimado" parent="." index="1"]
-metadata/_edit_lock_ = true
-
-[node name="Collider" parent="." index="3"]
+[node name="Collider" parent="." index="2"]
 metadata/_edit_lock_ = true
