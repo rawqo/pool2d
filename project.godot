@@ -8,18 +8,21 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Pool2D"
 run/main_scene="uid://jufagotumfjt"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/default_linear_damp=0.482
@@ -50,7 +53,7 @@ spawn={
 2d/default_gravity_vector=Vector2(0, 0)
 2d/default_linear_damp=0.6000000000000001
 2d/default_angular_damp=0.6000000000000001
-2d/sleep_threshold_linear=30.0
+2d/sleep_threshold_linear=15.0
 2d/sleep_threshold_angular=0.03490658503988659
 common/physics_interpolation=true
 2d/size/mode=2

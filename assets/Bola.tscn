@@ -1,25 +1,25 @@
-[gd_scene load_steps=18 format=3 uid="uid://cj5xvpymi2ki1"]
+[gd_scene format=3 uid="uid://cj5xvpymi2ki1"]
 
 [ext_resource type="Script" uid="uid://d0gnyigi12j86" path="res://scripts/bola.gd" id="1_myq1w"]
-[ext_resource type="Shader" uid="uid://bnigmyp0hypsi" path="res://Bola.gdshader" id="2_m3bf2"]
+[ext_resource type="Shader" uid="uid://bnigmyp0hypsi" path="res://shaders/Bola.gdshader" id="2_m3bf2"]
 [ext_resource type="AudioStream" uid="uid://d0dlfxa2so7f2" path="res://audio/sfx/hit0.wav" id="3_aeyvo"]
-[ext_resource type="Texture2D" uid="uid://dg6xg3wfdkjk1" path="res://sprites/bolas/mask.png" id="3_mq513"]
-[ext_resource type="Texture2D" uid="uid://b7gwlsil03eju" path="res://sprites/bolas/base_rayada.png" id="4_mq513"]
+[ext_resource type="Texture2D" uid="uid://dg6xg3wfdkjk1" path="res://sprites/bolas/utiles/mask.png" id="3_mq513"]
+[ext_resource type="Texture2D" uid="uid://dq5lipy1fov2m" path="res://sprites/bolas/0.png" id="4_7kug0"]
 [ext_resource type="AudioStream" uid="uid://covxpyd0klcj3" path="res://audio/sfx/hit1.wav" id="4_mv644"]
-[ext_resource type="Texture2D" uid="uid://6ynuc2xjagg2" path="res://sprites/bolas/mask_shadow.png" id="5_dlnwt"]
+[ext_resource type="Texture2D" uid="uid://6ynuc2xjagg2" path="res://sprites/bolas/utiles/mask_shadow.png" id="5_dlnwt"]
 [ext_resource type="AudioStream" uid="uid://dnsobjxo32hiu" path="res://audio/sfx/hit2.wav" id="5_dphvw"]
 [ext_resource type="AudioStream" uid="uid://bnyj022nq4eg8" path="res://audio/sfx/hit3.wav" id="6_lu4p5"]
 [ext_resource type="Theme" uid="uid://dor21e5v7d3d7" path="res://art/Default_Theme.tres" id="7_ws448"]
+[ext_resource type="Texture2D" uid="uid://vhtsxqrlqnlj" path="res://sprites/bolas/utiles/shadow.png" id="10_7kug0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l2odm"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bf2"]
 resource_local_to_scene = true
 shader = ExtResource("2_m3bf2")
 shader_parameter/mask_texture = ExtResource("3_mq513")
-shader_parameter/numeroDeBola = 0
-shader_parameter/linear_velocity = 0.0
 shader_parameter/quaternion = Vector4(0, 0, 0, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mq513"]
@@ -46,50 +46,58 @@ stream_2/stream = ExtResource("5_dphvw")
 stream_3/stream = ExtResource("6_lu4p5")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jaq0j"]
-radius = 62.0
+radius = 100.0
 
-[node name="Bola" type="RigidBody2D"]
+[node name="Bola" type="RigidBody2D" unique_id=1924518973]
 mass = 0.8
 physics_material_override = SubResource("PhysicsMaterial_l2odm")
 contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("1_myq1w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=198860311]
 material = SubResource("ShaderMaterial_m3bf2")
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("4_mq513")
+scale = Vector2(0.1, 0.2)
+texture = ExtResource("4_7kug0")
 region_rect = Rect2(0, 0, 64, 64)
 
-[node name="SpriteSombra" type="Sprite2D" parent="Sprite2D"]
+[node name="SpriteSombreado" type="Sprite2D" parent="Sprite2D" unique_id=997423864]
 material = SubResource("CanvasItemMaterial_mq513")
+scale = Vector2(2, 1)
 texture = ExtResource("5_dlnwt")
 
-[node name="PointLight2D" type="PointLight2D" parent="Sprite2D/SpriteSombra"]
-position = Vector2(-152, -208)
+[node name="Luz" type="PointLight2D" parent="Sprite2D/SpriteSombreado" unique_id=1019988876]
+position = Vector2(-75, -100)
+scale = Vector2(0.7, 0.7)
 texture = SubResource("GradientTexture2D_7kug0")
 
-[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1422621304]
 stream = SubResource("AudioStreamRandomizer_du4l6")
 volume_db = -5.0
 pitch_scale = 0.7
 
-[node name="Collider" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1629623978]
 shape = SubResource("CircleShape2D_jaq0j")
 
-[node name="Label" type="RichTextLabel" parent="."]
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 34.0
-offset_bottom = 17.0
+[node name="Sombra" type="Sprite2D" parent="." unique_id=1678902730]
+z_index = -2
+position = Vector2(14, 33)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("10_7kug0")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=253141269]
+visible = false
+offset_left = -84.0
+offset_top = -32.0
+offset_right = 84.0
+offset_bottom = 67.0
 pivot_offset = Vector2(34, 16)
 theme = ExtResource("7_ws448")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 42
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
-vertical_alignment = 1
 justification_flags = 0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,25 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj2gglc0npt5f"]
+[gd_scene format=3 uid="uid://bj2gglc0npt5f"]
 
-[ext_resource type="Texture2D" uid="uid://dddo0hypqyeki" path="res://sprites/bolas/base_blanca.png" id="2_0iqmd"]
-[ext_resource type="Shader" uid="uid://bnigmyp0hypsi" path="res://Bola.gdshader" id="2_8xvv8"]
-[ext_resource type="Texture2D" uid="uid://dg6xg3wfdkjk1" path="res://sprites/bolas/mask.png" id="3_4sw7g"]
+[ext_resource type="Script" uid="uid://bcgmlw80dw6px" path="res://scripts/bola_player.gd" id="2_4sw7g"]
+[ext_resource type="Shader" uid="uid://bnigmyp0hypsi" path="res://shaders/Bola.gdshader" id="2_8xvv8"]
+[ext_resource type="Texture2D" uid="uid://dg6xg3wfdkjk1" path="res://sprites/bolas/utiles/mask.png" id="3_4sw7g"]
 [ext_resource type="PackedScene" uid="uid://cj5xvpymi2ki1" path="res://assets/Bola.tscn" id="3_83ltj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdbuq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xvv8"]
 resource_local_to_scene = true
 shader = ExtResource("2_8xvv8")
 shader_parameter/mask_texture = ExtResource("3_4sw7g")
-shader_parameter/numeroDeBola = 0
-shader_parameter/linear_velocity = 0.0
 shader_parameter/quaternion = Vector4(0, 0, 0, 1)
 
-[node name="Bola" instance=ExtResource("3_83ltj")]
+[node name="Bola" unique_id=25022896 instance=ExtResource("3_83ltj")]
+script = ExtResource("2_4sw7g")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" parent="." index="0"]
-material = SubResource("ShaderMaterial_wdbuq")
-texture = ExtResource("2_0iqmd")
+[node name="Sprite2D" parent="." index="0" unique_id=198860311]
+material = SubResource("ShaderMaterial_8xvv8")
 metadata/_edit_lock_ = true
 
-[node name="Collider" parent="." index="2"]
+[node name="Luz" parent="Sprite2D/SpriteSombreado" parent_id_path=PackedInt32Array(997423864) index="0" unique_id=1019988876]
+energy = 0.5
+
+[node name="Collider" parent="." index="2" unique_id=1629623978]
 metadata/_edit_lock_ = true

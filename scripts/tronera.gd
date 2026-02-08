@@ -12,4 +12,6 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	body.queue_free()
+	if body is Bola:
+		print("La bola " + str(body.Numero) + " entro en " + str(self.name))
+		body.queue_free()

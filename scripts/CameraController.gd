@@ -3,8 +3,8 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var viewport_center = get_viewport_rect().get_center()
-	position = viewport_center
+	#var viewport_center = get_viewport_rect().get_center()
+	#position = viewport_center
 	pass # Replace with function body.
 
 
