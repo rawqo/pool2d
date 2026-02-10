@@ -1,8 +1,6 @@
 extends Node2D
-
-#var textura_rayada : Texture2D = load("res://sprites/bolas/base_rayada.png")
-#var textura_lisa : Texture2D = load("res://sprites/bolas/base_lisa.png")
 var contador_filas : int = 1
+const ESPACIO_ENTRE_BOLAS = 202
 
 enum Bolas {
 	LISA_AMARILLA,
@@ -22,49 +20,31 @@ enum Bolas {
 	RAYADA_MARRON
 }
 
+var arrayNumerosBolas : Array = range(0, 15)
+var bolasSpawneadas : Array = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for unaBola in Bolas:
-			print("Spawneando: " + str(unaBola))
-			SpawnBola(Bolas[unaBola])
-		
-			
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	self.position.y = self.position.y - (ESPACIO_ENTRE_BOLAS / 2)
+	SpawnearEnTriangulo()
+	#for unaBola in Bolas:
+			#print("Spawneando: " + str(unaBola))
+			#SpawnBola(Bolas[unaBola])
 	
 func SpawnBola(NumeroBola: int):
-	const ESPACIO_ENTRE_BOLAS = 210
-	var Bolita = load("res://assets/Bola.tscn").instantiate()
-	Bolita.name = "Bola_" + str(NumeroBola)
-	Bolita.Numero = NumeroBola + 1
-	Bolita.position.x = Bolita.position.x + (NumeroBola * ESPACIO_ENTRE_BOLAS)
-	Bolita.position.y = Bolita.position.y + (contador_filas * ESPACIO_ENTRE_BOLAS)
-	
-	# spawnear hilera de 1 bola, despues 2, 3, 4, 5... hasta quedarme sin bolas
-	# cada bola spawnea con la separacion definida por ESPACIO_ENTRE_BOLAS
-	# por cada vez que termino de spawnear una hilera, paso a spawnear
-	# verticalmente ESPACIO_ENTRE_BOLAS
-	# horizontalmente ESPACIO_ENTRE_BOLAS / 2
-		
-	
-	CorregirLabel(Bolita)
-	CargarTextura(Bolita)
-	
+	var bolita = load("res://assets/Bola.tscn").instantiate()
+	bolita.name = "Bola_" + str(NumeroBola)
+	bolita.Numero = NumeroBola + 1
+	CorregirLabel(bolita)
+	CargarTextura(bolita)
 	#Asignar sprite correspondiente a cada bola
 	#if (NumeroBola < 8):
 		#Bolita.get_node("Sprite2D").region_rect = Rect2(Vector2(NumeroBola*SPRITE_OFFSET,0), SPRITE_SIZE)
 	#else:
 		#Bolita.get_node("Sprite2D").region_rect = Rect2(Vector2((NumeroBola-8)*SPRITE_OFFSET,SPRITE_OFFSET), SPRITE_SIZE)
-
-	
-	add_child(Bolita)
-
-func ObtenerTexturasDisponibles():
-	var arrayDeTexturas : Array = []
-	return arrayDeTexturas
+	add_child(bolita)
+	bolasSpawneadas.append(NumeroBola)
+	return bolita
 
 #Corregir label, en caso de que la bola termine en 6 o 9
 func CorregirLabel(unaBola : Bola):
@@ -73,16 +53,37 @@ func CorregirLabel(unaBola : Bola):
 	else:
 		unaBola.get_child(-1).text = str(unaBola.Numero)
 	
-#Actualizar textura en base a si es lisa o rayada
-func ActualizarTextura(unaBola : Bola):
-	var texturas = ObtenerTexturasDisponibles()
-	if (unaBola.Numero % 16 < 9):
-		unaBola.get_node("Sprite2D").set_texture(texturas[unaBola.Numero])
-	else:
-		unaBola.get_node("Sprite2D").set_texture(texturas[unaBola.Numero])
-
 func CargarTextura(unaBola: Bola):
 	var texturePath = "res://sprites/bolas/"
 	texturePath = texturePath + str(unaBola.Numero) + ".png"
 	var textura : Texture2D = load(texturePath)
 	unaBola.get_node("Sprite2D").set_texture(textura)
+
+func SpawnearEnTriangulo():
+	var bolas_spawneadas = 0
+	var bolaSpawneada
+	var fila = 1
+	while bolas_spawneadas < Bolas.size():
+		for posicion_en_fila in fila:
+			if bolas_spawneadas == 4:
+				bolaSpawneada = SpawnBola(7)
+			else:
+				bolaSpawneada = SpawnBola(bolasSinSpawnear())
+			PosicionarBola(bolaSpawneada, posicion_en_fila, fila)
+			bolas_spawneadas = bolas_spawneadas + 1
+		fila = fila + 1
+
+func PosicionarBola(bola: Bola, posicionEnFila: int, numeroDeFila: int):
+	bola.position.y = bola.position.y + (numeroDeFila * ESPACIO_ENTRE_BOLAS / 2)
+	bola.position.y = bola.position.y - (posicionEnFila * ESPACIO_ENTRE_BOLAS)
+	bola.position.x = bola.position.x - (numeroDeFila * ESPACIO_ENTRE_BOLAS)
+			
+func bolasSinSpawnear():
+	var bolaASpawnear : int = arrayNumerosBolas.pick_random()
+	while bolaASpawnear == 7 or bolasSpawneadas.has(bolaASpawnear):
+		bolaASpawnear = arrayNumerosBolas.pick_random()
+	return bolaASpawnear	
+
+#
+#func espacio_entre_bolas():
+	#return randf_range(ESPACIO_ENTRE_BOLAS+1, ESPACIO_ENTRE_BOLAS+5)

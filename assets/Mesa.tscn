@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cr6x1skqrbeb4" path="res://sprites/tableros/tableropool.png" id="1_kstou"]
 [ext_resource type="PackedScene" uid="uid://mccfgy1jufpr" path="res://assets/Tronera.tscn" id="2_7r4hx"]
-[ext_resource type="Texture2D" uid="uid://dr7l1wqx36k6j" path="res://sprites/tableros/Mesa.png" id="3_hlvel"]
+[ext_resource type="Texture2D" uid="uid://djevgep00uhie" path="res://sprites/NoiseMesa.tres" id="3_5wvp8"]
+[ext_resource type="Script" uid="uid://cesvli4du8ejp" path="res://scripts/RandomNoiseGenerator.gd" id="3_v840r"]
+[ext_resource type="Texture2D" uid="uid://qhsw07e4u1ox" path="res://new_noise_texture_2d.tres" id="5_5wvp8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7r4hx"]
 texture = ExtResource("1_kstou")
@@ -36,11 +38,15 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_7r4hx")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v840r"]
+blend_mode = 3
+light_mode = 1
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hlvel"]
 size = Vector2(448, 32.000015)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxwfi"]
-size = Vector2(447.99988, 31.999994)
+size = Vector2(415.99988, 31.999994)
 
 [node name="Mesa" type="Node2D" unique_id=1469362482]
 scale = Vector2(4.000001, 4.000001)
@@ -48,27 +54,41 @@ metadata/_edit_vertical_guides_ = [4224.0, 4352.0]
 metadata/_edit_horizontal_guides_ = [-128.0, 2048.0, 2176.0, 2105.0]
 
 [node name="TileMapBase" type="TileMapLayer" parent="." unique_id=1590996207]
-position = Vector2(384, 128)
-tile_map_data = PackedByteArray("AAD1//v/AAAGAAAAAAD2//v/AAAGAAAAAAD3//v/AAAGAAAAAAD4//v/AAAGAAAAAAD5//v/AAAGAAAAAAD6//v/AAAGAAAAAAD7//v/AAAGAAAAAAD8//v/AAAGAAAAAAD9//v/AAAGAAAAAAD+//v/AAAGAAAAAAD///v/AAAGAAAAAAAAAPv/AAAGAAAAAAABAPv/AAAGAAAAAAACAPv/AAAGAAAAAAADAPv/AAAJAAEAAAAFAPv/AAAIAAEAAAAGAPv/AAAGAAAAAAAHAPv/AAAGAAAAAAAIAPv/AAAGAAAAAAAJAPv/AAAGAAAAAAAKAPv/AAAGAAAAAAALAPv/AAAGAAAAAAAMAPv/AAAGAAAAAAANAPv/AAAGAAAAAAAOAPv/AAAGAAAAAADz/wcAAAAGAAAAAADz/wYAAAAGAAAAAADz/wUAAAAGAAAAAADz/wQAAAAGAAAAAADz/wMAAAAGAAAAAADz/wIAAAAGAAAAAADz/wEAAAAGAAAAAADz/wAAAAAGAAAAAADz////AAAGAAAAAADz//7/AAAGAAAAAADz//3/AAAGAAAAAAAMAAwAAAAGAAAAAAANAAwAAAAGAAAAAAAOAAwAAAAGAAAAAAALAAwAAAAGAAAAAAAKAAwAAAAGAAAAAAAJAAwAAAAGAAAAAAAIAAwAAAAGAAAAAAAHAAwAAAAGAAAAAAAGAAwAAAAGAAAAAAACAAwAAAAGAAAAAAD5/wwAAAAGAAAAAAD6/wwAAAAGAAAAAAD7/wwAAAAGAAAAAAD8/wwAAAAGAAAAAAD9/wwAAAAGAAAAAAD+/wwAAAAGAAAAAAD//wwAAAAGAAAAAAAAAAwAAAAGAAAAAAABAAwAAAAGAAAAAAD4/wwAAAAGAAAAAAD3/wwAAAAGAAAAAAD2/wwAAAAGAAAAAAD1/wwAAAAGAAAAAADz/wkAAAAGAAAAAADz/wgAAAAGAAAAAADz/woAAAAGAAAAAADz/wsAAAAJAAEAAAAPAPv/AAAGAAAAAAD0//v/AAAIAAEAAAAPAAwAAAAGAAAAAADz//z/AAAKAAEAAAD0/wwAAAALAAEAAAAQAAwAAAAGAAAAAAARAAwAAAAGAAAAAAASAAwAAAAGAAAAAAATAAwAAAAGAAAAAAAUAAwAAAAKAAEAAAAVAAsAAAAIAAEAAAAVAAoAAAAGAAAAAAAVAAkAAAAGAAAAAAAVAAgAAAAGAAAAAAAVAAcAAAAGAAAAAAAVAAYAAAAGAAAAAAAVAAUAAAAGAAAAAAAVAAQAAAAGAAAAAAAVAAMAAAAGAAAAAAAVAAIAAAAGAAAAAAAVAAEAAAAGAAAAAAAVAAAAAAAGAAAAAAAVAP//AAAGAAAAAAAVAP7/AAAGAAAAAAAVAP3/AAAGAAAAAAAVAPz/AAALAAEAAAATAPv/AAAGAAAAAAASAPv/AAAGAAAAAAARAPv/AAAGAAAAAAAQAPv/AAAGAAAAAAAUAPv/AAAJAAEAAAADAAwAAAAKAAEAAAAFAAwAAAALAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAABAAAAALAAEAAAAgAAAAAAALAAEAAAD//wAAAAAKAAEAAAD//wEAAAAGAAAAAAD//wIAAAAGAAAAAAD//wMAAAAGAAAAAAD//wQAAAAGAAAAAAD//wUAAAAGAAAAAAD//wYAAAAGAAAAAAD//wcAAAAGAAAAAAD//wgAAAAGAAAAAAD//wkAAAAGAAAAAAD//woAAAAGAAAAAAD//wsAAAAGAAAAAAD//wwAAAAGAAAAAAD//w0AAAAGAAAAAAD//w4AAAAGAAAAAAD//w8AAAAJAAEAAAAAAP//AAAIAAEAAAABAP//AAAGAAAAAAABABAAAAAGAAAAAAACAP//AAAGAAAAAAACABAAAAAGAAAAAAADAP//AAAGAAAAAAADABAAAAAGAAAAAAAEAP//AAAGAAAAAAAEABAAAAAGAAAAAAAFAP//AAAGAAAAAAAFABAAAAAGAAAAAAAGAP//AAAGAAAAAAAGABAAAAAGAAAAAAAHAP//AAAGAAAAAAAHABAAAAAGAAAAAAAIAP//AAAGAAAAAAAIABAAAAAGAAAAAAAJAP//AAAGAAAAAAAJABAAAAAGAAAAAAAKAP//AAAGAAAAAAAKABAAAAAGAAAAAAALAP//AAAGAAAAAAALABAAAAAGAAAAAAAMAP//AAAGAAAAAAAMABAAAAAGAAAAAAANAP//AAAGAAAAAAANABAAAAAGAAAAAAAOAP//AAAJAAEAAAAOABAAAAAKAAEAAAARAP//AAAIAAEAAAARABAAAAALAAEAAAASAP//AAAGAAAAAAASABAAAAAGAAAAAAATAP//AAAGAAAAAAATABAAAAAGAAAAAAAUAP//AAAGAAAAAAAUABAAAAAGAAAAAAAVAP//AAAGAAAAAAAVABAAAAAGAAAAAAAWAP//AAAGAAAAAAAWABAAAAAGAAAAAAAXAP//AAAGAAAAAAAXABAAAAAGAAAAAAAYAP//AAAGAAAAAAAYABAAAAAGAAAAAAAZAP//AAAGAAAAAAAZABAAAAAGAAAAAAAaAP//AAAGAAAAAAAaABAAAAAGAAAAAAAbAP//AAAGAAAAAAAbABAAAAAGAAAAAAAcAP//AAAGAAAAAAAcABAAAAAGAAAAAAAdAP//AAAGAAAAAAAdABAAAAAGAAAAAAAeAP//AAAGAAAAAAAeABAAAAAGAAAAAAAfAP//AAAJAAEAAAAfABAAAAAKAAEAAAAgAAEAAAAGAAAAAAAgAAIAAAAGAAAAAAAgAAMAAAAGAAAAAAAgAAQAAAAGAAAAAAAgAAUAAAAGAAAAAAAgAAYAAAAGAAAAAAAgAAcAAAAGAAAAAAAgAAgAAAAGAAAAAAAgAAkAAAAGAAAAAAAgAAoAAAAGAAAAAAAgAAsAAAAGAAAAAAAgAAwAAAAGAAAAAAAgAA0AAAAGAAAAAAAgAA4AAAAGAAAAAAAgAA8AAAAIAAEAAAA=")
 tile_set = SubResource("TileSet_52uii")
+metadata/_edit_lock_ = true
+
+[node name="TexturaMesa" type="Sprite2D" parent="." unique_id=1812815731]
+z_index = -10
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_5wvp8")
+centered = false
+script = ExtResource("3_v840r")
+metadata/_edit_lock_ = true
+
+[node name="TexturaRandomRuido" type="Sprite2D" parent="." unique_id=1402563488]
+material = SubResource("CanvasItemMaterial_v840r")
+position = Vector2(511.99988, 255.99994)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_5wvp8")
+metadata/_edit_lock_ = true
 
 [node name="Troneras" type="Node2D" parent="." unique_id=347183811]
-metadata/_edit_lock_ = true
 
 [node name="Tronera SupIzq" parent="Troneras" unique_id=980239067 instance=ExtResource("2_7r4hx")]
 metadata/_edit_lock_ = true
 
 [node name="Tronera SupMid" parent="Troneras" unique_id=1863251589 instance=ExtResource("2_7r4hx")]
-position = Vector2(527.9999, -14.999996)
+position = Vector2(511.99988, -14.999996)
 rotation = 0.7853982
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Tronera SupDer" parent="Troneras" unique_id=1791768726 instance=ExtResource("2_7r4hx")]
-position = Vector2(1055.9999, 0)
+position = Vector2(1023.9999, 0)
 rotation = 1.5707964
 
 [node name="Tronera InfMid" parent="Troneras" unique_id=1793202383 instance=ExtResource("2_7r4hx")]
-position = Vector2(527.9999, 530.9998)
+position = Vector2(511.99982, 530.9998)
 rotation = -2.3561945
 scale = Vector2(0.99999994, 0.99999994)
 
@@ -78,11 +98,21 @@ rotation = -1.5707964
 metadata/_edit_lock_ = true
 
 [node name="TroneraInfDer" parent="Troneras" unique_id=271195374 instance=ExtResource("2_7r4hx")]
-position = Vector2(1055.9998, 511.99994)
+position = Vector2(1023.99976, 511.99994)
 rotation = 3.1415925
 
 [node name="Bordes" type="StaticBody2D" parent="." unique_id=1286987728]
 position = Vector2(385, 128)
+
+[node name="Esquina1" type="CollisionPolygon2D" parent="Bordes" unique_id=1135935042]
+position = Vector2(-406.3333, -106.66667)
+polygon = PackedVector2Array(21.333328, 10.666664, -10.666664, 10.666664, -10.666664, -21.333328)
+metadata/_edit_group_ = true
+
+[node name="Esquina2" type="CollisionPolygon2D" parent="Bordes" unique_id=796550047]
+position = Vector2(-374.25, -138.75)
+polygon = PackedVector2Array(21.249996, 10.749997, 21.249996, -21.249996, -10.749997, -21.249996)
+metadata/_edit_group_ = true
 
 [node name="Izq" type="CollisionShape2D" parent="Bordes" unique_id=1614795087]
 position = Vector2(-401, 128.00009)
@@ -90,11 +120,5 @@ rotation = -1.57079
 shape = SubResource("RectangleShape2D_hlvel")
 
 [node name="Top" type="CollisionShape2D" parent="Bordes" unique_id=476164818]
-position = Vector2(-129.00006, -144)
+position = Vector2(-145.00006, -144)
 shape = SubResource("RectangleShape2D_xxwfi")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1812815731]
-z_index = -10
-position = Vector2(531.3749, 259.37494)
-scale = Vector2(0.5433349, 0.2777099)
-texture = ExtResource("3_hlvel")

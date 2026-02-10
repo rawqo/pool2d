@@ -1,0 +1,16 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://qhsw07e4u1ox"]
+
+[sub_resource type="Gradient" id="Gradient_hlvel"]
+colors = PackedColorArray(0.15083143, 0.5661137, 0.45943567, 1, 0, 0.5238313, 0.44744703, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v840r"]
+noise_type = 4
+frequency = 0.005
+fractal_type = 0
+fractal_ping_pong_strength = 10.0
+
+[resource]
+width = 2048
+height = 1024
+noise = SubResource("FastNoiseLite_v840r")
+color_ramp = SubResource("Gradient_hlvel")
