@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dqbk7kubrbvxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxwfi"]
+size = Vector2(420, 32)
+
+[node name="BordeVertical" type="StaticBody2D" unique_id=1225144609]
+rotation = -1.5707964
+
+[node name="EsquinaSup" type="CollisionPolygon2D" parent="." unique_id=1640657511]
+position = Vector2(221, 5.00001)
+polygon = PackedVector2Array(-11, 11, 21, -21, -11, -21)
+metadata/_edit_group_ = true
+
+[node name="EsquinaInf" type="CollisionPolygon2D" parent="." unique_id=199402634]
+position = Vector2(-231, 4.9999895)
+polygon = PackedVector2Array(21, 11, 21, -21, -11, -21)
+metadata/_edit_group_ = true
+
+[node name="Borde" type="CollisionShape2D" parent="." unique_id=1556602335]
+shape = SubResource("RectangleShape2D_xxwfi")
+metadata/_edit_group_ = true

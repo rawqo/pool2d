@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://covxpyd0klcj3" path="res://audio/sfx/hit1.wav" id="4_mv644"]
 [ext_resource type="Texture2D" uid="uid://crti3j0tbkv5k" path="res://sprites/bolas/utiles/BolaShading.tres" id="5_7kug0"]
 [ext_resource type="AudioStream" uid="uid://dnsobjxo32hiu" path="res://audio/sfx/hit2.wav" id="5_dphvw"]
-[ext_resource type="Texture2D" uid="uid://7b5pjgk66c3x" path="res://sprites/bolas/utiles/BolaLuz.tres" id="6_fcyua"]
 [ext_resource type="AudioStream" uid="uid://bnyj022nq4eg8" path="res://audio/sfx/hit3.wav" id="6_lu4p5"]
 [ext_resource type="Theme" uid="uid://dor21e5v7d3d7" path="res://art/Default_Theme.tres" id="7_ws448"]
 [ext_resource type="Texture2D" uid="uid://vhtsxqrlqnlj" path="res://sprites/bolas/utiles/shadow.png" id="10_7kug0"]
@@ -37,14 +36,12 @@ stream_3/stream = ExtResource("6_lu4p5")
 [sub_resource type="CircleShape2D" id="CircleShape2D_jaq0j"]
 radius = 100.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7kug0"]
-polygon = PackedVector2Array(0, -102, 26, -99, 52, -88, 72, -72, 89, -50, 99, -26, 102, 0, 99, 26, 89, 50, 72, 72, 52, 88, 27, 98, 0, 102, -27, 98, -51, 88, -72, 72, -88, 52, -99, 26, -102, 0, -99, -26, -88, -51, -72, -72, -50, -89, -26, -99)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kug0"]
+radius = 6.0
 
 [node name="Bola" type="RigidBody2D" unique_id=1924518973]
 mass = 0.8
 physics_material_override = SubResource("PhysicsMaterial_l2odm")
-contact_monitor = true
-max_contacts_reported = 2
 script = ExtResource("1_myq1w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=198860311]
@@ -52,23 +49,19 @@ material = SubResource("ShaderMaterial_m3bf2")
 scale = Vector2(0.1, 0.2)
 texture = ExtResource("4_7kug0")
 region_rect = Rect2(0, 0, 64, 64)
+metadata/_edit_lock_ = true
 
 [node name="SpriteSombreado" type="Sprite2D" parent="Sprite2D" unique_id=997423864]
 material = SubResource("CanvasItemMaterial_mq513")
 scale = Vector2(2, 1)
 texture = ExtResource("5_7kug0")
 
-[node name="Luz" type="PointLight2D" parent="Sprite2D/SpriteSombreado" unique_id=1019988876]
-position = Vector2(-75, -100)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("6_fcyua")
-
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1422621304]
 stream = SubResource("AudioStreamRandomizer_du4l6")
 volume_db = -5.0
 pitch_scale = 0.7
 
-[node name="Collider" type="CollisionShape2D" parent="." unique_id=1629623978]
+[node name="Colision" type="CollisionShape2D" parent="." unique_id=1629623978]
 shape = SubResource("CircleShape2D_jaq0j")
 
 [node name="Sombra" type="Sprite2D" parent="." unique_id=1678902730]
@@ -77,9 +70,11 @@ position = Vector2(14, 33)
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("10_7kug0")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=942215452]
-occluder = SubResource("OccluderPolygon2D_7kug0")
-metadata/_edit_lock_ = true
+[node name="AreaDeteccion" type="Area2D" parent="." unique_id=1079659021]
+collision_mask = 2
+
+[node name="ColliderDeteccion" type="CollisionShape2D" parent="AreaDeteccion" unique_id=505498775]
+shape = SubResource("CircleShape2D_7kug0")
 
 [node name="Label" type="RichTextLabel" parent="." unique_id=253141269]
 visible = false
@@ -97,3 +92,4 @@ horizontal_alignment = 1
 justification_flags = 0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="AreaDeteccion" to="." method="_on_area_deteccion_area_entered"]

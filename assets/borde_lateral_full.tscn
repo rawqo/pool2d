@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b1i3x1nk45v88"]
+
+[ext_resource type="PackedScene" uid="uid://b741k27i31od1" path="res://assets/borde_lateral.tscn" id="1_8flr0"]
+
+[node name="BordeLateral" type="Node2D" unique_id=2143437440]
+
+[node name="BordeLateralMitad" parent="." unique_id=1225144609 instance=ExtResource("1_8flr0")]
+
+[node name="BordeLateralMitad2" parent="." unique_id=1713527002 instance=ExtResource("1_8flr0")]
+position = Vector2(544, 0)
+rotation = -3.1415927
+scale = Vector2(1, -1)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cm5ojp36vrh5x"]
 
-[node name="MenuPrincipal" type="Control"]
+[node name="MenuPrincipal" type="Control" unique_id=1354721284]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,7 +8,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Jugar_Bola8" type="Button" parent="."]
+[node name="Jugar_Bola8" type="Button" parent="." unique_id=1303473695]
 layout_mode = 0
 offset_left = 358.0
 offset_top = 59.0
@@ -17,7 +17,7 @@ offset_bottom = 113.0
 text = "Jugar Pool Normal
 (Bola 8)"
 
-[node name="Jugar_Billar" type="Button" parent="."]
+[node name="Jugar_Billar" type="Button" parent="." unique_id=194980973]
 layout_mode = 0
 offset_left = 358.0
 offset_top = 127.0
@@ -25,7 +25,7 @@ offset_right = 507.0
 offset_bottom = 181.0
 text = "Jugar Billar"
 
-[node name="Jugar_BolaRaw" type="Button" parent="."]
+[node name="Jugar_BolaRaw" type="Button" parent="." unique_id=1963715538]
 layout_mode = 0
 offset_left = 370.0
 offset_top = 199.0

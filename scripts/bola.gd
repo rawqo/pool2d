@@ -14,16 +14,15 @@ func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	calcular_rotacion_shader()
+
 
 func _on_body_entered(body: Node) -> void:
 	#TODO: Make volume of sound depends on force of impact
 	if body is Bola:
 		if (not $AudioPlayer.has_stream_playback()):
 			$AudioPlayer.play()		#Play hit sound
-	else:
-		pass
 	
 func calcular_rotacion_shader():
 	var xRotation: float = 0.0
@@ -42,3 +41,16 @@ func calcular_rotacion_shader():
 #func Hit(body: Node2D, collidingforce: ):
 	#body.get_linear_velocity()
 	#pass
+
+
+func _on_area_deteccion_area_entered(area: Area2D) -> void:
+	call_deferred("EliminarBola", area)
+
+func EliminarBola(tronera) -> void:
+	self.set_freeze_enabled(true)
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", tronera.global_position, 0.2)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "scale", Vector2(), 0.3)
+	tween.tween_callback(self.queue_free)

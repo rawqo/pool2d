@@ -17,10 +17,6 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" parent="." index="0" unique_id=198860311]
 material = SubResource("ShaderMaterial_8xvv8")
-metadata/_edit_lock_ = true
 
-[node name="Luz" parent="Sprite2D/SpriteSombreado" parent_id_path=PackedInt32Array(997423864) index="0" unique_id=1019988876]
-energy = 0.5
-
-[node name="Collider" parent="." index="2" unique_id=1629623978]
+[node name="Colision" parent="." index="2" unique_id=1629623978]
 metadata/_edit_lock_ = true

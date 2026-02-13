@@ -1,21 +1,18 @@
 [gd_scene format=3 uid="uid://mccfgy1jufpr"]
 
-[ext_resource type="Script" uid="uid://fkrd7e683u00" path="res://scripts/tronera.gd" id="1_hnwwi"]
 [ext_resource type="Texture2D" uid="uid://dks5xqpqhumcp" path="res://sprites/tableros/tronera.png" id="2_yfmna"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ie6e4"]
-radius = 20.0
+radius = 30.0
 
 [node name="Tronera" type="Area2D" unique_id=980239067]
-script = ExtResource("1_hnwwi")
+collision_layer = 2
+monitoring = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2124380610]
 position = Vector2(-1.9073486e-06, -4.7683716e-07)
-scale = Vector2(0.039062496, 0.0390625)
+scale = Vector2(0.058593757, 0.05859375)
 texture = ExtResource("2_yfmna")
 
 [node name="Area_Colision" type="CollisionShape2D" parent="." unique_id=709590539]
-position = Vector2(-10.000002, -10)
 shape = SubResource("CircleShape2D_ie6e4")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

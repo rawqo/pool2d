@@ -1,6 +1,6 @@
 extends Node2D
 var contador_filas : int = 1
-const ESPACIO_ENTRE_BOLAS = 202
+const ESPACIO_ENTRE_BOLAS : int = 202
 
 enum Bolas {
 	LISA_AMARILLA,
@@ -25,7 +25,7 @@ var bolasSpawneadas : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.position.y = self.position.y - (ESPACIO_ENTRE_BOLAS / 2)
+	self.position.y = self.position.y - (ESPACIO_ENTRE_BOLAS * 0.5)
 	SpawnearEnTriangulo()
 	#for unaBola in Bolas:
 			#print("Spawneando: " + str(unaBola))
@@ -35,13 +35,8 @@ func SpawnBola(NumeroBola: int):
 	var bolita = load("res://assets/Bola.tscn").instantiate()
 	bolita.name = "Bola_" + str(NumeroBola)
 	bolita.Numero = NumeroBola + 1
-	CorregirLabel(bolita)
+	#CorregirLabel(bolita)
 	CargarTextura(bolita)
-	#Asignar sprite correspondiente a cada bola
-	#if (NumeroBola < 8):
-		#Bolita.get_node("Sprite2D").region_rect = Rect2(Vector2(NumeroBola*SPRITE_OFFSET,0), SPRITE_SIZE)
-	#else:
-		#Bolita.get_node("Sprite2D").region_rect = Rect2(Vector2((NumeroBola-8)*SPRITE_OFFSET,SPRITE_OFFSET), SPRITE_SIZE)
 	add_child(bolita)
 	bolasSpawneadas.append(NumeroBola)
 	return bolita
@@ -68,17 +63,17 @@ func SpawnearEnTriangulo():
 			if bolas_spawneadas == 4:
 				bolaSpawneada = SpawnBola(7)
 			else:
-				bolaSpawneada = SpawnBola(bolasSinSpawnear())
+				bolaSpawneada = SpawnBola(bolaSinSpawnear())
 			PosicionarBola(bolaSpawneada, posicion_en_fila, fila)
 			bolas_spawneadas = bolas_spawneadas + 1
 		fila = fila + 1
 
 func PosicionarBola(bola: Bola, posicionEnFila: int, numeroDeFila: int):
-	bola.position.y = bola.position.y + (numeroDeFila * ESPACIO_ENTRE_BOLAS / 2)
+	bola.position.y = bola.position.y + (numeroDeFila * ESPACIO_ENTRE_BOLAS * 0.5)
 	bola.position.y = bola.position.y - (posicionEnFila * ESPACIO_ENTRE_BOLAS)
 	bola.position.x = bola.position.x - (numeroDeFila * ESPACIO_ENTRE_BOLAS)
 			
-func bolasSinSpawnear():
+func bolaSinSpawnear():
 	var bolaASpawnear : int = arrayNumerosBolas.pick_random()
 	while bolaASpawnear == 7 or bolasSpawneadas.has(bolaASpawnear):
 		bolaASpawnear = arrayNumerosBolas.pick_random()

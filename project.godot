@@ -21,11 +21,9 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
-window/default_linear_damp=0.482
 
 [gui]
 
@@ -50,11 +48,10 @@ shoot={
 2d/default_angular_damp=0.6000000000000001
 2d/sleep_threshold_linear=15.0
 2d/sleep_threshold_angular=0.03490658503988659
-common/physics_interpolation=true
-2d/size/mode=2
+common/stretch/mode="canvas_items"
 
 [rendering]
 
-textures/canvas_textures/default_texture_repeat=1
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true

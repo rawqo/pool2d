@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://jufagotumfjt"]
 
 [ext_resource type="PackedScene" uid="uid://btbjl4rt8fdct" path="res://assets/Mesa.tscn" id="1_05t4e"]
-[ext_resource type="Script" uid="uid://b2mtbkytfdaic" path="res://scenes/escena_juego.gd" id="1_incip"]
+[ext_resource type="Script" uid="uid://b2mtbkytfdaic" path="res://scripts/escena_juego.gd" id="1_incip"]
 [ext_resource type="PackedScene" uid="uid://bj2gglc0npt5f" path="res://assets/BolaPlayer.tscn" id="3_wssat"]
 [ext_resource type="Script" uid="uid://cnkx7qqtwnr1x" path="res://scripts/SpawnerBolas.gd" id="4_incip"]
 
@@ -13,24 +13,25 @@ loop = true
 script = ExtResource("1_incip")
 
 [node name="Main_Camera" type="Camera2D" parent="." unique_id=95463547]
-position = Vector2(-291, -446)
-anchor_mode = 0
+position = Vector2(4096, 2048)
 ignore_rotation = false
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.18, 0.18)
 limit_enabled = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Mesa" parent="." unique_id=1487250740 instance=ExtResource("1_05t4e")]
-scale = Vector2(7, 7)
+scale = Vector2(8, 8)
 
 [node name="SpawnerBolas" type="Node2D" parent="." unique_id=1212915606]
-position = Vector2(2102, 1738)
+position = Vector2(2560, 2048)
 script = ExtResource("4_incip")
 
 [node name="BolaJugador" parent="." unique_id=660242951 instance=ExtResource("3_wssat")]
-position = Vector2(5324, 1738)
+position = Vector2(6144, 2048)
 mass = 1.0
+contact_monitor = true
+max_contacts_reported = 2
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1451004681]
 stream = SubResource("AudioStreamMP3_incip")

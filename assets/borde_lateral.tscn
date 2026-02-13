@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b741k27i31od1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxwfi"]
+size = Vector2(428, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6wda3"]
+size = Vector2(64, 64)
+
+[node name="BordeLateral" type="StaticBody2D" unique_id=1225144609]
+metadata/_edit_lock_ = true
+
+[node name="EsquinaDer" type="CollisionPolygon2D" parent="." unique_id=1640657511]
+position = Vector2(228, 5)
+polygon = PackedVector2Array(5, 11, 21, -21, 5, -21)
+metadata/_edit_group_ = true
+
+[node name="EsquinaIzq" type="CollisionPolygon2D" parent="." unique_id=199402634]
+position = Vector2(-216, 5)
+polygon = PackedVector2Array(21, 11, 21, -21, -11, -21)
+metadata/_edit_group_ = true
+
+[node name="Borde" type="CollisionShape2D" parent="." unique_id=1556602335]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_xxwfi")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=279809753]
+position = Vector2(19.000029, 3.5762787e-07)
+scale = Vector2(6.6875005, 0.5)
+texture = SubResource("PlaceholderTexture2D_6wda3")

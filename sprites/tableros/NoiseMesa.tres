@@ -4,7 +4,7 @@
 colors = PackedColorArray(0.7330051, 0.7330055, 0.7330054, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hlvel"]
-frequency = 0.4
+frequency = 0.25
 fractal_type = 0
 fractal_octaves = 1
 
